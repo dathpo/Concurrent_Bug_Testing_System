@@ -1,4 +1,4 @@
-package CoverageCalculator;
+package coveragecalculator;
 
 public class CoverageCalculator {
     private double coverage;

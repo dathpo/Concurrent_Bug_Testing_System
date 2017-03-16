@@ -1,4 +1,4 @@
-package FaultChecker;
+package faultchecker;
 
 public class FaultChecker {
     

@@ -1,4 +1,4 @@
-package TestGenerator;
+package testgenerator;
 import java.util.ArrayList;
 import java.util.List;
 //Takes in an instrumented CUT and creates random tests by way of sets of input values.

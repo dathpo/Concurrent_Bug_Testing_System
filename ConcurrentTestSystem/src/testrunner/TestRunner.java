@@ -1,4 +1,4 @@
-package TestRunner;
+package testrunner;
 
 import java.util.List;
 
