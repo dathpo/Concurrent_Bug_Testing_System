@@ -32,6 +32,7 @@ public class Account {
 
 	public void deposit(double put) {
 		System.out.println("Balance Before Deposit: £" + balance);
+		//lock 1
 		accLock.lock();
 		try {
 			System.out.println(Thread.currentThread().getName() + " attempting deposit.");
@@ -48,6 +49,7 @@ public class Account {
 
 	public boolean withdraw(double take) throws InterruptedException {
 		System.out.println(Thread.currentThread().getName() + " is attempting a withdrawl.");
+		//lock 2
 		accLock.lock();
 		try {
 			System.out.println("Current Balance: " + balance);
@@ -71,6 +73,7 @@ public class Account {
 	
 	public boolean withdrawStanding(double take, int time) throws InterruptedException {
 		System.out.println(Thread.currentThread().getName() + " is attempting a withdrawl.");
+		//lock 3
 		accLock.lock();
 		try {
 			System.out.println("Current Balance: " + balance);
@@ -95,6 +98,7 @@ public class Account {
 	public void transfer(Account recipient, double transferAmount) {
 		System.out.println(Thread.currentThread().getName() + " is attempting to transfer £" + transferAmount
 				+ " into account " + accountNo);
+		//lock 4
 		accLock.lock();
 		try {
 			balance = balance - transferAmount;

@@ -1,5 +1,7 @@
 package CUT;
 
+import java.util.ArrayList;
+
 import testgenerator.Info;
 
 public class Driver {
@@ -9,13 +11,29 @@ public class Driver {
 	}
 
 	public Info analysis(int testNumber) {
+		ArrayList<String> equations = new ArrayList<String>();
+		ArrayList<String> locks = new ArrayList<String>();
+		ArrayList<String> names = new ArrayList<String>();
+
+		switch(testNumber) {
+		case 1: equations.add("balance1 == input"); equations.add("balance2 == input"); locks.add("A1"); locks.add("B1"); names.add("Account 1 Balance"); names.add("Account 2 Balance");
+		break;
+		case 2: ;
+		break;
+		case 3: ;
+		break;
+		case 4: ;
+		break;
+		case 5: ;
+		break;
+		}
 		//a list of the equation for each test, eg account balance 1 = input + 100
 		//a list of all the lock List<Strings> eg [A1,A2,B1]
 		//a list of all names of inputs/outputs, matching up with the input/output
 		//lists. eg ["Account 1 Deposit", "Account 2 Withdraw"] ["Account 1 Balance", "Account 2 Balance"]
-		return new Info();
+		return new Info(equations, locks, names);
 	}
-	
+
 	public void test1() {
 		Account account = new Account(1, 500.00);
 		RunnableCheckBalance cb1 = new RunnableCheckBalance(account);
@@ -78,7 +96,7 @@ public class Driver {
 		twd.start();
 		tdp.start();
 	}
-	
+
 	public void test6() {
 		Account account = new Account(1, 0);
 		Account account2 = new Account(2, 100);
@@ -88,10 +106,10 @@ public class Driver {
 		ttr.start();
 
 	}
-	
+
 	public void test7() {
 		SavingsAccount savingsAccount = new SavingsAccount(1,100,05);
-		
+
 	}
 
 	public void test8() {
