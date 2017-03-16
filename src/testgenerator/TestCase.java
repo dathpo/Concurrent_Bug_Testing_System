@@ -7,12 +7,16 @@ public class TestCase {
     List<Integer> inputs;
     List<Integer> expectedOutputs;
     List<String> locks;
+    List<String> inputContext;
+    List<String> outputContext;
     
-    public TestCase (int id, List<Integer> inputs, List<Integer> expectedOutputs, List<String> locks) {
+    public TestCase (int id, List<Integer> inputs, List<Integer> expectedOutputs, List<String> locks, List<String> inputContext, List<String> outputContext) {
         this.id = id;
         this.inputs = inputs;
         this.expectedOutputs = expectedOutputs;
         this.locks = locks;
+        this.inputContext = inputContext;
+        this.outputContext = outputContext;
     }
     
     public int getID() {
@@ -29,5 +33,13 @@ public class TestCase {
     
     public List<String> getLocks() {
         return locks;
+    }
+    
+    public List<String> getInputContext() {
+        return inputContext;
+    }
+    
+    public List<String> getOutputContext() {
+        return outputContext;
     }
 }
