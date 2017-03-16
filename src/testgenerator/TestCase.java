@@ -4,13 +4,13 @@ import java.util.List;
 
 public class TestCase {
     int id;
-    List<Integer> inputs;
-    List<Integer> expectedOutputs;
+    List<Double> inputs;
+    List<Double> expectedOutputs;
     List<String> locks;
     List<String> inputContext;
     List<String> outputContext;
     
-    public TestCase (int id, List<Integer> inputs, List<Integer> expectedOutputs, List<String> locks, List<String> inputContext, List<String> outputContext) {
+    public TestCase (int id, List<Double> inputs, List<Double> expectedOutputs, List<String> locks, List<String> inputContext, List<String> outputContext) {
         this.id = id;
         this.inputs = inputs;
         this.expectedOutputs = expectedOutputs;
@@ -23,11 +23,11 @@ public class TestCase {
         return id;
     }
     
-    public List<Integer> getInputs() {
+    public List<Double> getInputs() {
         return inputs;
     }
     
-    public List<Integer> getExpectedOutputs() {
+    public List<Double> getExpectedOutputs() {
         return expectedOutputs;
     }
     
