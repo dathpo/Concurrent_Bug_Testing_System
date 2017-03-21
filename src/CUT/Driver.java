@@ -15,17 +15,26 @@ public class Driver {
 		ArrayList<String> locks = new ArrayList<String>();
 		ArrayList<String> names = new ArrayList<String>();
 
+		/*
+		Account account = new Account(1, 0);
+		Account account2 = new Account(2, 100);
+		RunnableTransfer tr = new RunnableTransfer(account2, account, 100.00);
+		Thread ttr = new Thread(tr);
+		ttr.setName("Employee 1");
+		ttr.start();
+		 */
 		switch(testNumber) {
-		case 1: equations.add("balance1 == input"); equations.add("balance2 == input"); locks.add("A1"); locks.add("B1"); names.add("Account 1 Balance"); names.add("Account 2 Balance");
+		case 1: names.add("balance"); names.add("balance");
 		break;
-		case 2: ;
+		case 2: locks.add("A1"); names.add("balance"); names.add("depostit1");
 		break;
-		case 3: ;
+		case 3: locks.add("A1"); locks.add("B2"); names.add("deposit"); names.add("withdraw");
 		break;
-		case 4: ;
+		case 4: locks.add("A1"); locks.add("B2"); locks.add("C3"); names.add("deposit"); names.add("withdraw"); names.add("standingOrder");
 		break;
-		case 5: ;
+		case 5: locks.add("A2"); locks.add("B1"); names.add("withdraw"); names.add("deposit");
 		break;
+		case 6: locks.add("A4"); names.add("transfer");
 		}
 		//a list of the equation for each test, eg account balance 1 = input + 100
 		//a list of all the lock List<Strings> eg [A1,A2,B1]

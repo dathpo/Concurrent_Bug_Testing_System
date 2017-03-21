@@ -19,29 +19,52 @@ public class TestGenerator {
 	public TestGenerator(Driver cut) {
 		this.cut = cut;
 		testInputList = new ArrayList<TestCase>();
-		analyze();
-		generate();
-
+		for(int i = 0; i < 6; i++) {
+			analyze(i);
+			generate(i);
+		}
 	}
-	private void analyze() {
+	private void analyze(int index) {
 		// TODO Auto-generated method stub
-		//cut.instrumentation()
-		info = cut.analysis(1);
+		//cut.instrumentation()		
+		info = cut.analysis(index);
 		equations = info.getEquations();
 		locks = info.getLocks();
-		names = info.getNames();
+		names = info.getNames();		
 	}
 
-	private void generate() {
+	private void generate(int index) {
 		inputs = new ArrayList<Double>();
 		expectedOutputs = new ArrayList<Double>();
 		Random random = new Random(0);
-		double input = random.nextInt(100000) + 1;
-		inputs.add(input);
-		expectedOutputs.add(input);
-		expectedOutputs.add(input);
+		double balance = random.nextInt(100000) + 1;
+		inputs.add(balance);
 
-		testInputList.add(new TestCase(0, inputs, null, locks, null, null));
+		for(String n: info.getNames()) {
+			if(n == "balance") {				
+				expectedOutputs.add(balance);
+			}
+			if(n == "deposit") {
+				double deposit = random.nextInt(100000) + 1;
+				inputs.add(deposit);
+				expectedOutputs.add(deposit + balance);
+			}
+			if(n == "withdraw" || n == "standingOrder") {
+				double withdraw = random.nextInt(100000) + 1;
+				inputs.add(withdraw);
+				expectedOutputs.add(balance - withdraw);
+			}
+			if(n == "transfer") {
+				double transfer = random.nextInt(100000) + 1;
+				inputs.add(transfer);
+				expectedOutputs.add(balance - transfer);
+				double balance2 = random.nextInt(100000) + 1;
+				inputs.add(balance2);
+				expectedOutputs.add(balance + transfer);
+			}			
+		}
+
+		testInputList.add(new TestCase(index, inputs, expectedOutputs, locks, null, null));
 	}
 
 	public List<TestCase> getTests() {
