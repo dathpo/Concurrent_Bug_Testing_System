@@ -3,12 +3,12 @@ package testgenerator;
 import java.util.List;
 
 public class TestCase {
-	int id;
-	List<Double> inputs;
-	List<Double> expectedOutputs;
-	List<String> locks;
-	List<String> inputContext;
-	List<String> outputContext;
+	private int id;
+	private List<Double> inputs;
+	private List<Double> expectedOutputs;
+	private List<String> locks;
+	private List<String> inputContext;
+	private List<String> outputContext;
 
 	public TestCase (int id, List<Double> inputs, List<Double> expectedOutputs, List<String> locks, List<String> inputContext, List<String> outputContext) {
 		this.id = id;
