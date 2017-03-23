@@ -33,7 +33,7 @@ public class TestGenerator {
 		names = info.getNames();		
 	}
 
-	private void generate(int index) {
+	public void generate(int index) {
 		inputs = new ArrayList<Double>();
 		expectedOutputs = new ArrayList<Double>();
 		Random random = new Random(0);

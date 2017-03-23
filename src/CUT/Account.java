@@ -22,8 +22,14 @@ public class Account {
 	}
 
 	public void getBalance() {
-		System.out.println(Thread.currentThread().getName() + " asked for balance in account " + accountNo);
-		System.out.println("Balance is: £"+ balance);
+		// lock 5
+		accLock.lock();
+		try {
+			System.out.println(Thread.currentThread().getName() + " asked for balance in account " + accountNo);
+			System.out.println("Balance is: £"+ balance);
+		} finally {
+			accLock.unlock();
+		}
 	}
 
 	public int getAccNumber() {
@@ -70,7 +76,7 @@ public class Account {
 			accLock.unlock();
 		}
 	}
-	
+
 	public boolean withdrawStanding(double take, int time) throws InterruptedException {
 		System.out.println(Thread.currentThread().getName() + " is attempting a withdrawl.");
 		//lock 3
@@ -107,7 +113,7 @@ public class Account {
 		}
 		recipient.deposit(transferAmount);
 		System.out.println("Transfer successful.\nBalance is now: £" + balance + " in account " + accountNo);
-		 System.out.println("Balance is now: £" + recipient.balance + " in account"
-		 + recipient.accountNo);
+		System.out.println("Balance is now: £" + recipient.balance + " in account"
+				+ recipient.accountNo);
 	}
 }
