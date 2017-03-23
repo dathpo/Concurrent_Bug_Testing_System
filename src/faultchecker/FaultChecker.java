@@ -19,13 +19,25 @@ public class FaultChecker {
 
     public void checkTestCase(TestCase tc, List<List<Double>> resultsList) {
         List<List<Double>> failures = new ArrayList<>();
+        int[] failFreq = {};
         for (List<Double> results: resultsList) {
-            if (!results.equals(tc.getExpectedOutputs()) && !failures.contains(results)) {
-                failures.add(results);
+            if (!results.equals(tc.getExpectedOutputs())) {
+                if (!failures.contains(results)) {
+                    failures.add(results);
+                    int[] failfreq = failFreq;
+                    failFreq = new int[failfreq.length + 1];
+                    for (int i = 0; i < failfreq.length; i++) {
+                        failFreq[i] = failfreq[i];
+                    }
+                }
+                else {
+                    failFreq[failures.indexOf(results)]++;
+                }
             }
         }
         if (!failures.isEmpty()) {
             System.out.println("TestCase: " + tc.getID());
+            System.out.println("Ran " + resultsList.size() + " times, " + failures.size() + " unique failed results found");
             System.out.println("");
             System.out.println("Inputs");
             for (String input:connectToContext(tc.getInputContext(),tc.getInputs())) {
@@ -37,7 +49,8 @@ public class FaultChecker {
             }
             System.out.println("");
             for (int i = 0; i < failures.size(); i++) {
-                System.out.println("Results of Failure No. " + i);
+                System.out.println("Results of Failure No. " + (i + 1));
+                System.out.println("This result occurred " + failFreq[i] + " time(s)");
                 for (String output:connectToContext(tc.getOutputContext(),failures.get(i))) {
                     System.out.println(output);
                 }
