@@ -1,8 +1,8 @@
 package CUT;
 
-import java.util.ArrayList;
-
 import testgenerator.Info;
+
+import java.util.ArrayList;
 
 public class Driver {
 
@@ -17,38 +17,38 @@ public class Driver {
 		ArrayList<String> outputContext = new ArrayList<String>();
 
 		switch(testNumber) {
-		case 1: 
-			equations.add("balance1"); 
-			locks.add("A5"); locks.add("B5");			
+		case 1:
+			equations.add("balance1");
+			locks.add("A5"); locks.add("B5");
 			inputContext.add("balance1");
-			inputContext.add("balance2");			
+			inputContext.add("balance2");
 			outputContext.add("account1");
 			break;
-		case 2: 
+		case 2:
 			equations.add("balance + deposit");
-			locks.add("A5"); locks.add("B1"); 
+			locks.add("A5"); locks.add("B1");
 			inputContext.add("balance"); inputContext.add("deposit");
 			outputContext.add("account1");
 			break;
-		case 3: 
+		case 3:
 			equations.add("balance + deposit - withdraw");
-			locks.add("A1"); locks.add("B2"); 
+			locks.add("A1"); locks.add("B2");
 			inputContext.add("deposit"); inputContext.add("withdraw");
 			outputContext.add("account1");
 			break;
-		case 4: 
+		case 4:
 			equations.add("balance - withdraw - standingOrder");
 			locks.add("A1"); locks.add("B2"); locks.add("C3");
-			inputContext.add("deposit"); inputContext.add("withdraw"); inputContext.add("standingOrder");			
+			inputContext.add("deposit"); inputContext.add("withdraw"); inputContext.add("standingOrder");
 			outputContext.add("account1");
 			break;
-		case 5: 
+		case 5:
 			equations.add("balance + deposit");
 			locks.add("A2"); locks.add("B1");
 			inputContext.add("withdraw"); inputContext.add("deposit");
 			outputContext.add("account1");
 			break;
-		case 6: 
+		case 6:
 			equations.add("balance - transfer"); equations.add("balance + transfer");
 			locks.add("A4"); locks.add("A1");
 			inputContext.add("transfer");
