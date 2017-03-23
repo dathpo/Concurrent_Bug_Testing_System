@@ -33,7 +33,7 @@ public class TestGenerator {
 		outputContext = info.getOutputContext();
 	}
 
-	private void generate(int index) {
+	public void generate(int index) {
 		/*TO DECODE EQUATIONS FROM A STRING
 		 * 	double input1 = inputs[0];
 		 * 	engine.put("input1", input1);
