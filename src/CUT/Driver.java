@@ -19,6 +19,7 @@ public class Driver {
 		switch(testNumber) {
 		case 1: 
 			inputContext.add("balance"); inputContext.add("balance");
+			equations.add("balance");
 		break;
 		case 2: 
 			locks.add("A1"); inputContext.add("balance"); inputContext.add("depostit1");
@@ -28,6 +29,7 @@ public class Driver {
 		break;
 		case 4: 
 			locks.add("A1"); locks.add("B2"); locks.add("C3"); inputContext.add("deposit"); inputContext.add("withdraw"); inputContext.add("standingOrder");
+			equations.add("balance - withdraw - standingOrder");
 		break;
 		case 5: 
 			locks.add("A2"); locks.add("B1"); inputContext.add("withdraw"); inputContext.add("deposit");

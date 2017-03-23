@@ -21,7 +21,11 @@ public class Account {
 		accCondition = accLock.newCondition();
 	}
 
-	public void getBalance() {
+	public double getBalance() {
+		return balance;
+	}
+	
+	public void printBalance() {
 		// lock 5
 		accLock.lock();
 		try {
