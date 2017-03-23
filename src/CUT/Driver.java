@@ -13,34 +13,33 @@ public class Driver {
 	public Info analysis(int testNumber) {
 		ArrayList<String> equations = new ArrayList<String>();
 		ArrayList<String> locks = new ArrayList<String>();
-		ArrayList<String> names = new ArrayList<String>();
-
-		/*
-		Account account = new Account(1, 0);
-		Account account2 = new Account(2, 100);
-		RunnableTransfer tr = new RunnableTransfer(account2, account, 100.00);
-		Thread ttr = new Thread(tr);
-		ttr.setName("Employee 1");
-		ttr.start();
-		 */
+		ArrayList<String> inputContext = new ArrayList<String>();
+		ArrayList<String> outputContext = new ArrayList<String>();
+		
 		switch(testNumber) {
-		case 1: names.add("balance"); names.add("balance");
+		case 1: 
+			inputContext.add("balance"); inputContext.add("balance");
 		break;
-		case 2: locks.add("A1"); names.add("balance"); names.add("depostit1");
+		case 2: 
+			locks.add("A1"); inputContext.add("balance"); inputContext.add("depostit1");
 		break;
-		case 3: locks.add("A1"); locks.add("B2"); names.add("deposit"); names.add("withdraw");
+		case 3: 
+			locks.add("A1"); locks.add("B2"); inputContext.add("deposit"); inputContext.add("withdraw");
 		break;
-		case 4: locks.add("A1"); locks.add("B2"); locks.add("C3"); names.add("deposit"); names.add("withdraw"); names.add("standingOrder");
+		case 4: 
+			locks.add("A1"); locks.add("B2"); locks.add("C3"); inputContext.add("deposit"); inputContext.add("withdraw"); inputContext.add("standingOrder");
 		break;
-		case 5: locks.add("A2"); locks.add("B1"); names.add("withdraw"); names.add("deposit");
+		case 5: 
+			locks.add("A2"); locks.add("B1"); inputContext.add("withdraw"); inputContext.add("deposit");
 		break;
-		case 6: locks.add("A4"); names.add("transfer");
+		case 6: 
+			locks.add("A4"); inputContext.add("transfer");
 		}
 		//a list of the equation for each test, eg account balance 1 = input + 100
 		//a list of all the lock List<Strings> eg [A1,A2,B1]
 		//a list of all names of inputs/outputs, matching up with the input/output
 		//lists. eg ["Account 1 Deposit", "Account 2 Withdraw"] ["Account 1 Balance", "Account 2 Balance"]
-		return new Info(equations, locks, names);
+		return new Info(equations, locks, inputContext, outputContext);
 	}
 
 	public void test1() {

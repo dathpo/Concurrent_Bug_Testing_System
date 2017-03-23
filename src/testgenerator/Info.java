@@ -1,6 +1,7 @@
 package testgenerator;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Info {
 	//a list of the equation for each test, eg account balance 1 = input + 100
@@ -10,12 +11,14 @@ public class Info {
 
 	private ArrayList<String> equations;
 	private ArrayList<String> locks;
-	private ArrayList<String> names;	
+	private ArrayList<String> inputContext;
+	private ArrayList<String> outputContext;
 
-	public Info(ArrayList<String> equations, ArrayList<String> locks, ArrayList<String> names) {
+	public Info(ArrayList<String> equations, ArrayList<String> locks, ArrayList<String> inputContext, ArrayList<String> outputContext) {
 		this.equations = equations;
 		this.locks = locks;
-		this.names = names;		
+		this.inputContext = inputContext;
+		this.outputContext = outputContext;
 	}	
 
 	public ArrayList<String> getEquations() {
@@ -26,8 +29,12 @@ public class Info {
 		return locks;
 	}
 
-	public ArrayList<String> getNames() {
-		return names;
+	public List<String> getInputContext() {
+		return inputContext;
+	}
+
+	public List<String> getOutputContext() {
+		return outputContext;
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import CUT.Driver;
-//Takes in an instrumented CUT and creates random tests by way of sets of input values.
+//Takes in an CUT and creates random tests by creating and filling TestCase objects.
 public class TestGenerator {
 
 	Driver cut;
@@ -14,7 +14,8 @@ public class TestGenerator {
 	List<Double> expectedOutputs;    
 	List<String> equations;
 	List<String> locks;
-	List<String> names;
+	List<String> inputContext;
+	List<String> outputContext;
 
 	public TestGenerator(Driver cut) {
 		this.cut = cut;
@@ -25,21 +26,28 @@ public class TestGenerator {
 		}
 	}
 	private void analyze(int index) {
-		// TODO Auto-generated method stub
-		//cut.instrumentation()		
 		info = cut.analysis(index);
 		equations = info.getEquations();
 		locks = info.getLocks();
-		names = info.getNames();		
+		inputContext = info.getInputContext();
+		outputContext = info.getOutputContext();
 	}
 
 	private void generate(int index) {
+		/*TO DECODE EQUATIONS FROM A STRING
+		 * 	double input1 = inputs[0];
+		 * 	engine.put("input1", input1);
+		 * 	ScriptEngineManager mgr = new ScriptEngineManager();
+			ScriptEngine engine = mgr.getEngineByName("JavaScript");
+			String equation = "x + 10";
+			System.out.println(engine.eval(infix));
+		 */
 		inputs = new ArrayList<Double>();
 		expectedOutputs = new ArrayList<Double>();
 		Random random = new Random(0);
 		double balance = random.nextInt(100000) + 1;
 		inputs.add(balance);
-
+		/*
 		for(String n: info.getNames()) {
 			if(n == "balance") {				
 				expectedOutputs.add(balance);
@@ -63,6 +71,7 @@ public class TestGenerator {
 				expectedOutputs.add(balance + transfer);
 			}			
 		}
+		*/
 
 		testInputList.add(new TestCase(index, inputs, expectedOutputs, locks, null, null));
 	}
