@@ -10,7 +10,7 @@ public class RunnableCheckBalance implements Runnable {
 
 	@Override
 	public void run() {
-		account.getBalance();
+		account.printBalance();
 	}
 
 }

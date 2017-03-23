@@ -15,27 +15,44 @@ public class Driver {
 		ArrayList<String> locks = new ArrayList<String>();
 		ArrayList<String> inputContext = new ArrayList<String>();
 		ArrayList<String> outputContext = new ArrayList<String>();
-		
+
 		switch(testNumber) {
 		case 1: 
-			inputContext.add("balance"); inputContext.add("balance");
-			equations.add("balance");
-		break;
+			equations.add("balance1"); 
+			locks.add("A5"); locks.add("B5");			
+			inputContext.add("balance1");
+			inputContext.add("balance2");			
+			outputContext.add("account1");
+			break;
 		case 2: 
-			locks.add("A1"); inputContext.add("balance"); inputContext.add("depostit1");
-		break;
+			equations.add("balance + deposit");
+			locks.add("A5"); locks.add("B1"); 
+			inputContext.add("balance"); inputContext.add("deposit");
+			outputContext.add("account1");
+			break;
 		case 3: 
-			locks.add("A1"); locks.add("B2"); inputContext.add("deposit"); inputContext.add("withdraw");
-		break;
+			equations.add("balance + deposit - withdraw");
+			locks.add("A1"); locks.add("B2"); 
+			inputContext.add("deposit"); inputContext.add("withdraw");
+			outputContext.add("account1");
+			break;
 		case 4: 
-			locks.add("A1"); locks.add("B2"); locks.add("C3"); inputContext.add("deposit"); inputContext.add("withdraw"); inputContext.add("standingOrder");
 			equations.add("balance - withdraw - standingOrder");
-		break;
+			locks.add("A1"); locks.add("B2"); locks.add("C3");
+			inputContext.add("deposit"); inputContext.add("withdraw"); inputContext.add("standingOrder");			
+			outputContext.add("account1");
+			break;
 		case 5: 
-			locks.add("A2"); locks.add("B1"); inputContext.add("withdraw"); inputContext.add("deposit");
-		break;
+			equations.add("balance + deposit");
+			locks.add("A2"); locks.add("B1");
+			inputContext.add("withdraw"); inputContext.add("deposit");
+			outputContext.add("account1");
+			break;
 		case 6: 
-			locks.add("A4"); inputContext.add("transfer");
+			equations.add("balance - transfer"); equations.add("balance + transfer");
+			locks.add("A4"); locks.add("A1");
+			inputContext.add("transfer");
+			outputContext.add("account1");  outputContext.add("account2");
 		}
 		//a list of the equation for each test, eg account balance 1 = input + 100
 		//a list of all the lock List<Strings> eg [A1,A2,B1]
