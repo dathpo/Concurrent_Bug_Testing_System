@@ -6,15 +6,22 @@ import java.util.List;
 import testgenerator.TestGenerator;
 
 public class CoverageCalculator {
+	
 	private double coverage;
 	private double expectedCoverage = 60;
 	private TestGenerator testGen;
+	private List<String> lockPairs;
+	
+	
+	public CoverageCalculator(List<String> lockPairs, List<String> locks) {
+		this.lockPairs = lockPairs;
+	}
 
 	public double getExpectedCoverage() {
 		return expectedCoverage;
 	}
 
-	private void calculateActualCoverage(List<String> pairs, List<String> locks) {
+	public void calculateActualCoverage(List<String> locks) {
 		// Calculate coverage here
 		List<String> expectedPairs = new ArrayList<>();
 		for (String lock1 : locks) {

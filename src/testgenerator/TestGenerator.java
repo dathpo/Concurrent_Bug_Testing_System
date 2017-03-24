@@ -52,6 +52,7 @@ public class TestGenerator {
 			}
 			for(int k = 0; k < outputContext.size(); k++){
 				double output;
+				engine.put("one", input1);
 				expectedOutputs.add(output);
 			}
 		}

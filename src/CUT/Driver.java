@@ -1,6 +1,7 @@
 package CUT;
 
 import testgenerator.Info;
+import testrunner.Handler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +62,7 @@ public class Driver {
 		return new Info(equations, locks, inputContext, outputContext);
 	}
 
-	public ArrayList<Double> test1(double balance) {
+	public Handler test1(double balance) {
 		Account account = new Account(1, balance);
 		List<String> locks = new ArrayList<>();		
 		RunnableCheckBalance cb1 = new RunnableCheckBalance(account, locks, "A");
@@ -81,10 +82,14 @@ public class Driver {
 		}
 		ArrayList<Double> balances = new ArrayList<Double>();
 		balances.add(account.getBalance());
-		return balances;
+		List<String> lockPairs = new ArrayList<>();
+		for (int i = 0; i < locks.size() - 1; i++) {
+			lockPairs.add(locks.get(i) + " " + locks.get(i + 1));
+		}
+		return new Handler(balances, lockPairs);
 	}
 
-	public ArrayList<Double> test2(double balance, double deposit) {
+	public Handler test2(double balance, double deposit) {
 		Account account = new Account(1, balance);
 		List<String> locks = new ArrayList<>();
 		RunnableCheckBalance cb1 = new RunnableCheckBalance(account, locks, "A");
@@ -103,11 +108,14 @@ public class Driver {
 
 		}
 		ArrayList<Double> balances = new ArrayList<Double>();
-		balances.add(account.getBalance());
-		return balances;
+		balances.add(account.getBalance());List<String> lockPairs = new ArrayList<>();
+		for (int i = 0; i < locks.size() - 1; i++) {
+			lockPairs.add(locks.get(i) + " " + locks.get(i + 1));
+		}
+		return new Handler(balances, lockPairs);
 	}
 
-	public ArrayList<Double> test3(double balance, double deposit, double withdraw) {
+	public Handler test3(double balance, double deposit, double withdraw) {
 		Account account = new Account(1, balance);
 		List<String> locks = new ArrayList<>();
 		RunnableDeposit dc = new RunnableDeposit(account, deposit, locks, "A");
@@ -127,10 +135,15 @@ public class Driver {
 		}
 		ArrayList<Double> balances = new ArrayList<Double>();
 		balances.add(account.getBalance());
-		return balances;
+		List<String> lockPairs = new ArrayList<>();
+		for (int i = 0; i < locks.size() - 1; i++) {
+			lockPairs.add(locks.get(i) + " " + locks.get(i + 1));
+		}
+		return new Handler(balances, lockPairs);
 	}
 
-	public ArrayList<Double> test4(double balance, double deposit, double withdraw, double standingOrder) {
+
+	public Handler test4(double balance, double deposit, double withdraw, double standingOrder) {
 		Account account = new Account(1, balance);
 		List<String> locks = new ArrayList<>();
 		RunnableDeposit dc = new RunnableDeposit(account, deposit, locks,"A");
@@ -155,10 +168,14 @@ public class Driver {
 		}
 		ArrayList<Double> balances = new ArrayList<Double>();
 		balances.add(account.getBalance());
-		return balances;
+		List<String> lockPairs = new ArrayList<>();
+		for (int i = 0; i < locks.size() - 1; i++) {
+			lockPairs.add(locks.get(i) + " " + locks.get(i + 1));
+		}
+		return new Handler(balances, lockPairs);
 	}
 
-	public ArrayList<Double> test5(double withdraw, double deposit) {
+	public Handler test5(double withdraw, double deposit) {
 		Account account = new Account(1, 0);
 		List<String> locks = new ArrayList<>();
 		RunnableWithdraw wd = new RunnableWithdraw(account, withdraw, locks, "A");
@@ -178,10 +195,14 @@ public class Driver {
 		}
 		ArrayList<Double> balances = new ArrayList<Double>();
 		balances.add(account.getBalance());
-		return balances;
+		List<String> lockPairs = new ArrayList<>();
+		for (int i = 0; i < locks.size() - 1; i++) {
+			lockPairs.add(locks.get(i) + " " + locks.get(i + 1));
+		}
+		return new Handler(balances, lockPairs);
 	}
 
-	public ArrayList<Double> test6(double balance1, double balance2, double amount) {
+	public Handler test6(double balance1, double balance2, double amount) {
 		Account account = new Account(1, balance1);
 		Account account2 = new Account(2, balance2);
 		List<String> locks = new ArrayList<>();
@@ -198,6 +219,10 @@ public class Driver {
 		ArrayList<Double> balances = new ArrayList<Double>();
 		balances.add(account.getBalance());
 		balances.add(account2.getBalance());
-		return balances;
+		List<String> lockPairs = new ArrayList<>();
+		for (int i = 0; i < locks.size() - 1; i++) {
+			lockPairs.add(locks.get(i) + " " + locks.get(i + 1));
+		}
+		return new Handler(balances, lockPairs);
 	}
 }
