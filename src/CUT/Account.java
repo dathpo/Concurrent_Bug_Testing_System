@@ -1,4 +1,5 @@
 package CUT;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -24,11 +25,12 @@ public class Account {
 	public double getBalance() {
 		return balance;
 	}
-	
-	public void printBalance() {
+
+	public void printBalance(List<String> locks, String id) {
 		// lock 5
 		accLock.lock();
 		try {
+			locks.add(5 + id);
 			System.out.println(Thread.currentThread().getName() + " asked for balance in account " + accountNo);
 			System.out.println("Balance is: £"+ balance);
 		} finally {
@@ -40,11 +42,12 @@ public class Account {
 		return accountNo;
 	}
 
-	public void deposit(double put) {
+	public void deposit(double put, List<String> locks, String id) {
 		System.out.println("Balance Before Deposit: £" + balance);
 		//lock 1
 		accLock.lock();
 		try {
+			locks.add(1 + id);
 			System.out.println(Thread.currentThread().getName() + " attempting deposit.");
 			balance = balance + put;
 			System.out.println(Thread.currentThread().getName() + "'s Deposit was successful!");
@@ -57,11 +60,12 @@ public class Account {
 
 	}
 
-	public boolean withdraw(double take) throws InterruptedException {
+	public boolean withdraw(double take, List<String> locks, String id) throws InterruptedException {
 		System.out.println(Thread.currentThread().getName() + " is attempting a withdrawl.");
 		//lock 2
 		accLock.lock();
 		try {
+			locks.add(2 + id);
 			System.out.println("Current Balance: " + balance);
 			while (balance < take) {
 				System.out.println(
@@ -81,11 +85,12 @@ public class Account {
 		}
 	}
 
-	public boolean withdrawStanding(double take, int time) throws InterruptedException {
+	public boolean withdrawStanding(double take, int time, List<String> locks, String id) throws InterruptedException {
 		System.out.println(Thread.currentThread().getName() + " is attempting a withdrawl.");
 		//lock 3
 		accLock.lock();
 		try {
+			locks.add(3 + id);
 			System.out.println("Current Balance: " + balance);
 			while (balance < take) {
 				System.out.println(
@@ -105,17 +110,18 @@ public class Account {
 		}
 	}
 
-	public void transfer(Account recipient, double transferAmount) {
+	public void transfer(Account recipient, double transferAmount, List<String> locks, String id) {
 		System.out.println(Thread.currentThread().getName() + " is attempting to transfer £" + transferAmount
 				+ " into account " + accountNo);
 		//lock 4
 		accLock.lock();
 		try {
+			locks.add(4 + id);
 			balance = balance - transferAmount;
 		} finally {
 			accLock.unlock();
 		}
-		recipient.deposit(transferAmount);
+		recipient.deposit(transferAmount, locks, id);
 		System.out.println("Transfer successful.\nBalance is now: £" + balance + " in account " + accountNo);
 		System.out.println("Balance is now: £" + recipient.balance + " in account"
 				+ recipient.accountNo);

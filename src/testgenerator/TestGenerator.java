@@ -45,7 +45,7 @@ public class TestGenerator {
 		inputs = new ArrayList<Double>();
 		expectedOutputs = new ArrayList<Double>();
 		Random random = new Random(0);
-		double balance = random.nextInt(100000) + 1;
+		double balance = random.nextInt(100000);
 		inputs.add(balance);
 		/*
 		for(String n: info.getNames()) {
@@ -53,20 +53,20 @@ public class TestGenerator {
 				expectedOutputs.add(balance);
 			}
 			if(n == "deposit") {
-				double deposit = random.nextInt(100000) + 1;
+				double deposit = random.nextInt(100000);
 				inputs.add(deposit);
 				expectedOutputs.add(deposit + balance);
 			}
 			if(n == "withdraw" || n == "standingOrder") {
-				double withdraw = random.nextInt(100000) + 1;
+				double withdraw = random.nextInt(100000);
 				inputs.add(withdraw);
 				expectedOutputs.add(balance - withdraw);
 			}
 			if(n == "transfer") {
-				double transfer = random.nextInt(100000) + 1;
+				double transfer = random.nextInt(100000);
 				inputs.add(transfer);
 				expectedOutputs.add(balance - transfer);
-				double balance2 = random.nextInt(100000) + 1;
+				double balance2 = random.nextInt(100000);
 				inputs.add(balance2);
 				expectedOutputs.add(balance + transfer);
 			}			
