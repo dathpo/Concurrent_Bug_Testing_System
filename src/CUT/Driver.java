@@ -20,40 +20,39 @@ public class Driver {
 
 		switch(testNumber) {
 		case 1:
-			equations.add("balance1");
+			equations.add("one");
 			locks.add("5A"); locks.add("5B");
 			inputContext.add("balance1");
-			inputContext.add("balance2");
 			outputContext.add("account1");
 			break;
 		case 2:
-			equations.add("balance + deposit");
+			equations.add("one + two");
 			locks.add("5A"); locks.add("1B");
-			inputContext.add("balance"); inputContext.add("deposit");
+			inputContext.add("balance1"); inputContext.add("deposit");
 			outputContext.add("account1");
 			break;
 		case 3:
-			equations.add("balance + deposit - withdraw");
+			equations.add("one + two - three");
 			locks.add("1A"); locks.add("2B");
-			inputContext.add("deposit"); inputContext.add("withdraw");
+			inputContext.add("balance1"); inputContext.add("deposit"); inputContext.add("withdraw");
 			outputContext.add("account1");
 			break;
 		case 4:
-			equations.add("balance - withdraw - standingOrder");
+			equations.add("one + two - three - four");
 			locks.add("1A"); locks.add("2B"); locks.add("3C");
-			inputContext.add("deposit"); inputContext.add("withdraw"); inputContext.add("standingOrder");
+			inputContext.add("balance1"); inputContext.add("deposit"); inputContext.add("withdraw"); inputContext.add("standingOrder");
 			outputContext.add("account1");
 			break;
 		case 5:
-			equations.add("balance + deposit");
+			equations.add("0 + one - two");
 			locks.add("2A"); locks.add("1B");
-			inputContext.add("withdraw"); inputContext.add("deposit");
+			inputContext.add("deposit"); inputContext.add("withdraw");
 			outputContext.add("account1");
 			break;
 		case 6:
-			equations.add("balance - transfer"); equations.add("balance + transfer");
+			equations.add("one - three"); equations.add("two + three");
 			locks.add("4A"); locks.add("1A");
-			inputContext.add("transfer");
+			inputContext.add("balance1"); inputContext.add("balance2"); inputContext.add("transfer");
 			outputContext.add("account1");  outputContext.add("account2");
 		}
 		//a list of the equation for each test, eg account balance 1 = input + 100
@@ -143,8 +142,9 @@ public class Driver {
 		return new Handler(balances, lockPairs);
 	}
 
+
 	public Handler test4(double balance, double deposit, double withdraw, double standingOrder) {
-		Account account = new Account(1, 0);
+		Account account = new Account(1, balance);
 		List<String> locks = new ArrayList<>();
 		RunnableDeposit dc = new RunnableDeposit(account, deposit, locks,"A");
 		RunnableWithdraw wc = new RunnableWithdraw(account, withdraw, locks, "B");
@@ -175,8 +175,8 @@ public class Driver {
 		return new Handler(balances, lockPairs);
 	}
 
-	public Handler test5(double balance, double withdraw, double deposit) {
-		Account account = new Account(1, balance);
+	public Handler test5(double withdraw, double deposit) {
+		Account account = new Account(1, 0);
 		List<String> locks = new ArrayList<>();
 		RunnableWithdraw wd = new RunnableWithdraw(account, withdraw, locks, "A");
 		RunnableDeposit dp = new RunnableDeposit(account, deposit, locks, "B");
