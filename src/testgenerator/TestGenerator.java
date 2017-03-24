@@ -45,8 +45,16 @@ public class TestGenerator {
 		inputs = new ArrayList<Double>();
 		expectedOutputs = new ArrayList<Double>();
 		Random random = new Random(0);
-		double balance = random.nextInt(100000);
-		inputs.add(balance);
+		for(int i = 0; i < 10; i++){
+			for(int j = 0; j < inputContext.size(); j++){
+				double newInput = random.nextInt(1000);
+				inputs.add(newInput);
+			}
+			for(int k = 0; k < outputContext.size(); k++){
+				double output;
+				expectedOutputs.add(output);
+			}
+		}
 		/*
 		for(String n: info.getNames()) {
 			if(n == "balance") {				
