@@ -3,6 +3,7 @@ package faultchecker;
 import testgenerator.TestCase;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public class FaultCheckerChecker {
         List<Double> fakeop2 = new ArrayList<>();
         fakeop2.add(2.0);
         fakeop2.add(2.0);
-        tcs.add(new TestCase(1.1, new ArrayList<>(), op, new ArrayList<>(), new ArrayList<>(), opc));
+        tcs.add(new TestCase(1.1, new ArrayList<>(), op, new HashSet<>(), new ArrayList<>(), opc));
         List<List<List<Double>>> rsL = new ArrayList<>();
         rsL.add(new ArrayList<>());
         rsL.get(0).add(op);

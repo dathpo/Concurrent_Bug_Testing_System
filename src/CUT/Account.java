@@ -38,6 +38,7 @@ public class Account {
 		}
 	}
 
+
 	public int getAccNumber() {
 		return accountNo;
 	}
@@ -67,18 +68,6 @@ public class Account {
 		try {
 			locks.add(2 + id);
 			System.out.println("Current Balance: " + balance);
-			int once = 0;
-			while (balance < take && once == 0) {
-				System.out.println(
-						"Not enough funds to perform withdrawl requested by: " + Thread.currentThread().getName());
-				if (!accWaiting) {
-					Thread.currentThread().interrupt();
-				}
-				accWaiting = accCondition.await(10, TimeUnit.SECONDS);
-				once = 1;
-			}
-			//accWaiting = true;
-			System.out.println("Re-attemping withdrawl of £: " + take + " by " + Thread.currentThread().getName());
 			balance -= take;
 			System.out.println("Withdrawl successful. Balance is now: £" + balance);
 			return accWaiting;
