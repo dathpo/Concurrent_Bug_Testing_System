@@ -56,10 +56,6 @@ public class Driver {
 			inputContext.add("balance1"); inputContext.add("balance2"); inputContext.add("transfer");
 			outputContext.add("account1"); outputContext.add("account2");
 		}
-		//a list of the equation for each test, eg account balance 1 = input + 100
-		//a list of all the lock List<Strings> eg [A1,A2,B1]
-		//a list of all names of inputs/outputs, matching up with the input/output
-		//lists. eg ["Account 1 Deposit", "Account 2 Withdraw"] ["Account 1 Balance", "Account 2 Balance"]
 		return new Info(equations, lockPairs, inputContext, outputContext);
 	}
 

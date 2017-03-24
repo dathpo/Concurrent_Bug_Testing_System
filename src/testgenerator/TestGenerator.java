@@ -9,7 +9,7 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 import CUT.Driver;
-//Takes in an CUT and creates random tests by creating and filling TestCase objects.
+
 public class TestGenerator {
 
 	Driver cut;
@@ -39,14 +39,6 @@ public class TestGenerator {
 	}
 
 	private void generate(int index) {
-		/*TO DECODE EQUATIONS FROM A STRING
-		 * 	double input1 = inputs[0];
-		 * 	engine.put("input1", input1);
-		 * 	ScriptEngineManager mgr = new ScriptEngineManager();
-			ScriptEngine engine = mgr.getEngineByName("JavaScript");
-			String equation = "x + 10";
-			System.out.println(engine.eval(infix));
-		 */
 		ScriptEngineManager mgr = new ScriptEngineManager();
 		ScriptEngine engine = mgr.getEngineByName("JavaScript");
 		
@@ -77,7 +69,6 @@ public class TestGenerator {
 					try {
 						expectedOutputs.add((Double) engine.eval(equation));
 					} catch (ScriptException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -97,5 +88,3 @@ public class TestGenerator {
 		return locks;
 	}
 }
-//Test generator calls () method on the CUT. This returns a list if all methods, the work they do (including all locks), and the inputs they require.
-//Generate will output a set of random numbers that is tied to a set of results for each of those numbers.
