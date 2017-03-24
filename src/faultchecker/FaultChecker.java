@@ -15,14 +15,20 @@ public class FaultChecker {
     }
 
     public void checkTestCases() {
+        boolean pass = true;
         if (testCases.size() == resultsLists.size()) {
             for (int i = 0; i < testCases.size(); i++) {
-                checkTestCase(testCases.get(i), resultsLists.get(i));
+                if (!checkTestCase(testCases.get(i), resultsLists.get(i))) {
+                    pass = false;
+                }
             }
+        }
+        if (pass) {
+            System.out.println("All tests passed!");
         }
     }
 
-    private void checkTestCase(TestCase tc, List<List<Double>> resultsList) {
+    private boolean checkTestCase(TestCase tc, List<List<Double>> resultsList) {
         List<List<Double>> failures = new ArrayList<>();
         int[] failFreq = {};
         for (List<Double> results: resultsList) {
@@ -71,6 +77,7 @@ public class FaultChecker {
             System.out.println("");
             System.out.println("");
         }
+        return (failTimes == 0);
     }
 
     public List<String> connectToContext(List<String> context, List<Double> values) {
