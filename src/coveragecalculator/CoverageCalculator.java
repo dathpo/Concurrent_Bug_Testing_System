@@ -8,20 +8,22 @@ import testgenerator.TestGenerator;
 public class CoverageCalculator {
 	
 	private double coverage;
-	private double expectedCoverage = 60;
+	private double expectedCoverage = 40;
 	private TestGenerator testGen;
 	private List<String> lockPairs;
-	
+	private List<String> locks;
 	
 	public CoverageCalculator(List<String> lockPairs, List<String> locks) {
 		this.lockPairs = lockPairs;
+		this.locks = locks;
+		calculateActualCoverage();
 	}
 
 	public double getExpectedCoverage() {
 		return expectedCoverage;
 	}
 
-	public void calculateActualCoverage(List<String> locks) {
+	public void calculateActualCoverage() {
 		// Calculate coverage here
 		List<String> expectedPairs = new ArrayList<>();
 		for (String lock1 : locks) {
@@ -34,7 +36,7 @@ public class CoverageCalculator {
 
 		int occurredPairs = 0;
 		for (String pair : expectedPairs) {
-			if (pairs.contains(pair)) {
+			if (lockPairs.contains(pair)) {
 				occurredPairs++;
 			}
 		}
@@ -46,9 +48,8 @@ public class CoverageCalculator {
 		if (coverage < expectedCoverage) {
 
 			System.out
-					.println("The tests run do not meet the coverage criteria, more tests will be generated and run.");
+					.println("The tests run do not meet the coverage criteria, more tests should be generated.");
 			// set TestGen to create new tests
-			testGen.generate(0); /* what index? */
 		} else {
 			System.out.println("The tests run meet the coverage criteria, no more tests will be generated.");
 		}

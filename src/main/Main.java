@@ -1,7 +1,6 @@
 package main;
 
 import testgenerator.TestGenerator;
-import testgenerator.TestCase;
 import CUT.Driver;
 import testrunner.TestRunner;
 import coveragecalculator.CoverageCalculator;
@@ -14,7 +13,8 @@ public class Main {
     	Driver cut = new Driver();
         TestGenerator testGen = new TestGenerator(cut);
         TestRunner testRunner = new TestRunner(cut, testGen.getTests());
-        CoverageCalculator covCalc = new CoverageCalculator();
+        CoverageCalculator covCalc = new CoverageCalculator(testRunner.getLockPairs(), testGen.getLocks());
+        FaultChecker fc = new FaultChecker(testGen.getTests(), testRunner.getResults());
     }
 
 }

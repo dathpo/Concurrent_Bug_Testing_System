@@ -5,19 +5,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FaultChecker {
-    public FaultChecker() {
-
+	private List<TestCase> testCases;
+	private List<List<List<Double>>> resultsLists;
+	
+    public FaultChecker(List<TestCase> tcs, List<List<List<Double>>> resultsLists) {
+    	this.testCases = tcs;
+    	this.resultsLists = resultsLists;
+    	checkTestCases();
     }
 
-    public void checkTestCases(List<TestCase> tcs, List<List<List<Double>>> resultsLists) {
-        if (tcs.size() == resultsLists.size()) {
-            for (int i = 0; i < tcs.size(); i++) {
-                checkTestCase(tcs.get(i), resultsLists.get(i));
+    public void checkTestCases() {
+        if (testCases.size() == resultsLists.size()) {
+            for (int i = 0; i < testCases.size(); i++) {
+                checkTestCase(testCases.get(i), resultsLists.get(i));
             }
         }
     }
 
-    public void checkTestCase(TestCase tc, List<List<Double>> resultsList) {
+    private void checkTestCase(TestCase tc, List<List<Double>> resultsList) {
         List<List<Double>> failures = new ArrayList<>();
         int[] failFreq = {};
         for (List<Double> results: resultsList) {

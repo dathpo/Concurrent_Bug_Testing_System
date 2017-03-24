@@ -21,11 +21,14 @@ public class TestRunner {
 		this.testCases = testCases;	
 		lp = new HashSet<String>();
 		lockPairs = new ArrayList<>();
+		results = new ArrayList<>();
+		runTests();
 	}
 
 	public void runTests() {
 		Handler handler;
 		for(int i = 0; i < testCases.size(); i++) {
+			results.add(new ArrayList<>());
 			TestCase testCase = testCases.get(i);
 			for (int j = 0; j < 5; j++) {
 				List<Double> inputs = testCase.getInputs();
