@@ -23,9 +23,6 @@ public class FaultChecker {
     }
 
     private void checkTestCase(TestCase tc, List<List<Double>> resultsList) {
-    	for (int x = 0; x < tc.getExpectedOutputs().size(); x++){
-    		System.out.println(tc.getOutputContext().get(x) + " " + tc.getExpectedOutputs().get(x));
-    	}
         List<List<Double>> failures = new ArrayList<>();
         int[] failFreq = {};
         for (List<Double> results: resultsList) {
@@ -37,15 +34,20 @@ public class FaultChecker {
                     for (int i = 0; i < failfreq.length; i++) {
                         failFreq[i] = failfreq[i];
                     }
+                    failFreq[failFreq.length - 1] = 1;
                 }
                 else {
                     failFreq[failures.indexOf(results)]++;
                 }
             }
         }
+        int failTimes = 0;
+        for (int i = 0; i < failFreq.length; i++) {
+            failTimes += failFreq[i];
+        }
         if (!failures.isEmpty()) {
             System.out.println("TestCase: " + tc.getID());
-            System.out.println("Ran " + resultsList.size() + " times, " + failures.size() + " unique failed results found");
+            System.out.println("Ran " + resultsList.size() + " times. " + failTimes + " failure(s). " + failures.size() + " unique failed result(s) found");
             System.out.println("");
             System.out.println("Inputs");
             for (String input:connectToContext(tc.getInputContext(),tc.getInputs())) {
@@ -55,6 +57,7 @@ public class FaultChecker {
             for (String output:connectToContext(tc.getOutputContext(),tc.getExpectedOutputs())) {
                 System.out.println(output);
             }
+            System.out.println("Expected outputs: " + tc.getExpectedOutputs().size());
             System.out.println("");
             for (int i = 0; i < failures.size(); i++) {
                 System.out.println("Results of Failure No. " + (i + 1));
@@ -64,8 +67,6 @@ public class FaultChecker {
                 }
                 System.out.println("");
             }
-            System.out.println("");
-            System.out.println("");
             System.out.println("");
             System.out.println("");
         }

@@ -1,10 +1,6 @@
 package coveragecalculator;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
-
-import testgenerator.TestGenerator;
 
 public class CoverageCalculator {
 	
@@ -34,7 +30,7 @@ public class CoverageCalculator {
 					.println("The tests run do not meet the coverage criteria, more tests should be generated.");
 			// set TestGen to create new tests
 		} else {
-			System.out.println("The tests run meet the coverage criteria, no more tests will be generated.");
+			System.out.println("The tests run meet the coverage criteria, no more tests need to be generated.");
 		}
 	}
 

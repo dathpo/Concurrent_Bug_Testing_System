@@ -54,7 +54,7 @@ public class Driver {
 		case 5:
 			equations.add("one - three"); equations.add("two + three");
 			inputContext.add("balance1"); inputContext.add("balance2"); inputContext.add("transfer");
-			outputContext.add("account1");  outputContext.add("account2");
+			outputContext.add("account1"); outputContext.add("account2");
 		}
 		//a list of the equation for each test, eg account balance 1 = input + 100
 		//a list of all the lock List<Strings> eg [A1,A2,B1]
@@ -143,7 +143,7 @@ public class Driver {
 		return new Handler(balances, lockPairs);
 	}
 
-	public Handler test4(double withdraw, double deposit) {
+	public Handler test4(double deposit, double withdraw) {
 		Account account = new Account(1, 0);
 		List<String> locks = new ArrayList<>();
 		RunnableWithdraw wd = new RunnableWithdraw(account, withdraw, locks, "G");
@@ -174,7 +174,7 @@ public class Driver {
 		Account account = new Account(1, balance1);
 		Account account2 = new Account(2, balance2);
 		List<String> locks = new ArrayList<>();
-		RunnableTransfer tr = new RunnableTransfer(account2, account, amount, locks, "I");
+		RunnableTransfer tr = new RunnableTransfer(account, account2, amount, locks, "I");
 		Thread ttr = new Thread(tr);
 		ttr.setName("Employee 1");
 		ttr.start();

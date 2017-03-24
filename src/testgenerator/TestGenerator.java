@@ -52,7 +52,7 @@ public class TestGenerator {
 		
 		for(int i = 0; i < 10; i++){
 			inputs = new ArrayList<Double>();
-			expectedOutputs = new ArrayList<Double>();
+			
 			for(int j = 0; j < inputContext.size(); j++){
 				Random random = new Random();
 				double newInput = random.nextInt(1000);
@@ -69,8 +69,10 @@ public class TestGenerator {
 				if(inputs.size() > 3){
 					engine.put("four", inputs.get(3));
 				}
+				
+				expectedOutputs = new ArrayList<Double>();
 				for(int l = 0; l < equations.size(); l++)
-				{
+				{	
 					String equation = equations.get(l);
 					try {
 						expectedOutputs.add((Double) engine.eval(equation));
