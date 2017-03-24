@@ -9,7 +9,6 @@ public class CoverageCalculator {
 	
 	private double coverage;
 	private double expectedCoverage = 40;
-	private TestGenerator testGen;
 	private List<String> lockPairs;
 	private List<String> locks;
 	
@@ -42,7 +41,18 @@ public class CoverageCalculator {
 		}
 
 		coverage = (occurredPairs / expectedPairs.size()) * 100;
+		System.out.println("Expected Pairs: ");
+		for(String pair : expectedPairs){
 
+			System.out.println("Pairs: " + pair);
+		}
+
+		System.out.println("Lock Pairs: ");
+		for(String lockPair : lockPairs){
+
+			System.out.println(lockPair);
+		}		
+		
 		System.out.println("The coverage expected from running the tests is " + expectedCoverage
 				+ "%, the actual coverage is " + coverage + "%.");
 		if (coverage < expectedCoverage) {

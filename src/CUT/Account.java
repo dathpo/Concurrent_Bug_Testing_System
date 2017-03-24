@@ -27,10 +27,10 @@ public class Account {
 	}
 
 	public void printBalance(List<String> locks, String id) {
-		// lock 5
+		// lock 4
 		accLock.lock();
 		try {
-			locks.add(5 + id);
+			locks.add(4 + id);
 			System.out.println(Thread.currentThread().getName() + " asked for balance in account " + accountNo);
 			System.out.println("Balance is: £"+ balance);
 		} finally {
@@ -87,38 +87,13 @@ public class Account {
 		}
 	}
 
-	public boolean withdrawStanding(double take, int time, List<String> locks, String id) throws InterruptedException {
-		System.out.println(Thread.currentThread().getName() + " is attempting a withdrawl.");
+	public void transfer(Account recipient, double transferAmount, List<String> locks, String id) {
+		System.out.println(Thread.currentThread().getName() + " is attempting to transfer £" + transferAmount
+				+ " into account " + accountNo);
 		//lock 3
 		accLock.lock();
 		try {
 			locks.add(3 + id);
-			System.out.println("Current Balance: " + balance);
-			while (balance < take) {
-				System.out.println(
-						"Not enough funds to perform withdrawl requested by: " + Thread.currentThread().getName());
-				if (!accWaiting) {
-					Thread.currentThread().interrupt();
-				}
-				accWaiting = accCondition.await(time, TimeUnit.SECONDS);
-			}
-			accWaiting = true;
-			System.out.println("Re-attemping withdrawl of £: " + take + " by " + Thread.currentThread().getName());
-			balance -= take;
-			System.out.println("Withdrawl successful. Balance is now: £" + balance);
-			return accWaiting;
-		} finally {
-			accLock.unlock();
-		}
-	}
-
-	public void transfer(Account recipient, double transferAmount, List<String> locks, String id) {
-		System.out.println(Thread.currentThread().getName() + " is attempting to transfer £" + transferAmount
-				+ " into account " + accountNo);
-		//lock 4
-		accLock.lock();
-		try {
-			locks.add(4 + id);
 			balance = balance - transferAmount;
 		} finally {
 			accLock.unlock();

@@ -21,13 +21,13 @@ public class Driver {
 		switch(testNumber) {
 		case 1:
 			equations.add("one");
-			locks.add("5A"); locks.add("5B");
+			locks.add("4A"); locks.add("4B");
 			inputContext.add("balance1");
 			outputContext.add("account1");
 			break;
 		case 2:
 			equations.add("one + two");
-			locks.add("5A"); locks.add("1B");
+			locks.add("4A"); locks.add("1B");
 			inputContext.add("balance1"); inputContext.add("deposit");
 			outputContext.add("account1");
 			break;
@@ -38,20 +38,14 @@ public class Driver {
 			outputContext.add("account1");
 			break;
 		case 4:
-			equations.add("one + two - three - four");
-			locks.add("1A"); locks.add("2B"); locks.add("3C");
-			inputContext.add("balance1"); inputContext.add("deposit"); inputContext.add("withdraw"); inputContext.add("standingOrder");
-			outputContext.add("account1");
-			break;
-		case 5:
 			equations.add("0 + one - two");
 			locks.add("2A"); locks.add("1B");
 			inputContext.add("deposit"); inputContext.add("withdraw");
 			outputContext.add("account1");
 			break;
-		case 6:
+		case 5:
 			equations.add("one - three"); equations.add("two + three");
-			locks.add("4A"); locks.add("1A");
+			locks.add("3A"); locks.add("1A");
 			inputContext.add("balance1"); inputContext.add("balance2"); inputContext.add("transfer");
 			outputContext.add("account1");  outputContext.add("account2");
 		}
@@ -142,40 +136,7 @@ public class Driver {
 		return new Handler(balances, lockPairs);
 	}
 
-
-	public Handler test4(double balance, double deposit, double withdraw, double standingOrder) {
-		Account account = new Account(1, balance);
-		List<String> locks = new ArrayList<>();
-		RunnableDeposit dc = new RunnableDeposit(account, deposit, locks,"A");
-		RunnableWithdraw wc = new RunnableWithdraw(account, withdraw, locks, "B");
-		RunnableStandingOrder so = new RunnableStandingOrder(account, standingOrder, 1000, locks, "C");
-		Thread tdc = new Thread(dc);
-		Thread twc = new Thread(wc);
-		Thread tso = new Thread(so);
-		tdc.setName("Person 1");
-		twc.setName("Person 2");
-		tso.setName("Bank Employee");
-		tdc.start();
-		twc.start();
-		tso.start();
-		try {
-			tdc.join();
-			twc.join();
-			tso.join();
-		}
-		catch(InterruptedException ie) {
-
-		}
-		ArrayList<Double> balances = new ArrayList<Double>();
-		balances.add(account.getBalance());
-		List<String> lockPairs = new ArrayList<>();
-		for (int i = 0; i < locks.size() - 1; i++) {
-			lockPairs.add(locks.get(i) + " " + locks.get(i + 1));
-		}
-		return new Handler(balances, lockPairs);
-	}
-
-	public Handler test5(double withdraw, double deposit) {
+	public Handler test4(double withdraw, double deposit) {
 		Account account = new Account(1, 0);
 		List<String> locks = new ArrayList<>();
 		RunnableWithdraw wd = new RunnableWithdraw(account, withdraw, locks, "A");
@@ -202,7 +163,7 @@ public class Driver {
 		return new Handler(balances, lockPairs);
 	}
 
-	public Handler test6(double balance1, double balance2, double amount) {
+	public Handler test5(double balance1, double balance2, double amount) {
 		Account account = new Account(1, balance1);
 		Account account2 = new Account(2, balance2);
 		List<String> locks = new ArrayList<>();

@@ -24,7 +24,7 @@ public class TestGenerator {
 	public TestGenerator(Driver cut) {
 		this.cut = cut;
 		testCaseList = new ArrayList<TestCase>();
-		for(int i = 1; i < 7; i++) {
+		for(int i = 1; i < 6; i++) {
 			analyze(i);
 			generate(i);
 		}
@@ -78,6 +78,8 @@ public class TestGenerator {
 						e.printStackTrace();
 					}
 				}
+				System.out.println("Expected Outputs: " + expectedOutputs.get(k));
+				System.out.println("Output Context: " + outputContext.get(k));
 			}
 			double ii = i;
 			double testIndex = index + (ii/10);

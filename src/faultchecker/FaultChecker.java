@@ -23,6 +23,9 @@ public class FaultChecker {
     }
 
     private void checkTestCase(TestCase tc, List<List<Double>> resultsList) {
+    	for (int x = 0; x < tc.getExpectedOutputs().size(); x++){
+    		System.out.println(tc.getOutputContext().get(x) + " " + tc.getExpectedOutputs().get(x));
+    	}
         List<List<Double>> failures = new ArrayList<>();
         int[] failFreq = {};
         for (List<Double> results: resultsList) {
