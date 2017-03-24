@@ -4,7 +4,9 @@ import testgenerator.Info;
 import testrunner.Handler;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Driver {
 
@@ -14,38 +16,43 @@ public class Driver {
 
 	public Info analysis(int testNumber) {
 		ArrayList<String> equations = new ArrayList<String>();
-		ArrayList<String> locks = new ArrayList<String>();
+		Set<String> lockPairs = new HashSet<String>();
 		ArrayList<String> inputContext = new ArrayList<String>();
 		ArrayList<String> outputContext = new ArrayList<String>();
-
+		
+		lockPairs.add("4A 4B");
+		lockPairs.add("4B 4A");
+		lockPairs.add("4C 1D");
+		lockPairs.add("1D 4C");
+		lockPairs.add("1E 2F");
+		lockPairs.add("2F 1E");
+		lockPairs.add("2G 1H");
+		lockPairs.add("1H 2G");
+		lockPairs.add("3I 1I");
+		
 		switch(testNumber) {
 		case 1:
 			equations.add("one");
-			locks.add("4A"); locks.add("4B");
 			inputContext.add("balance1");
 			outputContext.add("account1");
 			break;
 		case 2:
 			equations.add("one + two");
-			locks.add("4A"); locks.add("1B");
 			inputContext.add("balance1"); inputContext.add("deposit");
 			outputContext.add("account1");
 			break;
 		case 3:
 			equations.add("one + two - three");
-			locks.add("1A"); locks.add("2B");
 			inputContext.add("balance1"); inputContext.add("deposit"); inputContext.add("withdraw");
 			outputContext.add("account1");
 			break;
 		case 4:
 			equations.add("0 + one - two");
-			locks.add("2A"); locks.add("1B");
 			inputContext.add("deposit"); inputContext.add("withdraw");
 			outputContext.add("account1");
 			break;
 		case 5:
 			equations.add("one - three"); equations.add("two + three");
-			locks.add("3A"); locks.add("1A");
 			inputContext.add("balance1"); inputContext.add("balance2"); inputContext.add("transfer");
 			outputContext.add("account1");  outputContext.add("account2");
 		}
@@ -53,7 +60,7 @@ public class Driver {
 		//a list of all the lock List<Strings> eg [A1,A2,B1]
 		//a list of all names of inputs/outputs, matching up with the input/output
 		//lists. eg ["Account 1 Deposit", "Account 2 Withdraw"] ["Account 1 Balance", "Account 2 Balance"]
-		return new Info(equations, locks, inputContext, outputContext);
+		return new Info(equations, lockPairs, inputContext, outputContext);
 	}
 
 	public Handler test1(double balance) {
@@ -86,10 +93,10 @@ public class Driver {
 	public Handler test2(double balance, double deposit) {
 		Account account = new Account(1, balance);
 		List<String> locks = new ArrayList<>();
-		RunnableCheckBalance cb1 = new RunnableCheckBalance(account, locks, "A");
+		RunnableCheckBalance cb1 = new RunnableCheckBalance(account, locks, "C");
 		Thread tcb1 = new Thread(cb1);
 		tcb1.setName("Person 1");
-		RunnableDeposit dc = new RunnableDeposit(account, deposit, locks, "B");
+		RunnableDeposit dc = new RunnableDeposit(account, deposit, locks, "D");
 		Thread tdc = new Thread(dc);
 		tdc.setName("Person 1");
 		tcb1.start();
@@ -112,8 +119,8 @@ public class Driver {
 	public Handler test3(double balance, double deposit, double withdraw) {
 		Account account = new Account(1, balance);
 		List<String> locks = new ArrayList<>();
-		RunnableDeposit dc = new RunnableDeposit(account, deposit, locks, "A");
-		RunnableWithdraw wc = new RunnableWithdraw(account, withdraw, locks, "B");
+		RunnableDeposit dc = new RunnableDeposit(account, deposit, locks, "E");
+		RunnableWithdraw wc = new RunnableWithdraw(account, withdraw, locks, "F");
 		Thread tdc = new Thread(dc);
 		Thread twc = new Thread(wc);
 		tdc.setName("Person 1");
@@ -139,8 +146,8 @@ public class Driver {
 	public Handler test4(double withdraw, double deposit) {
 		Account account = new Account(1, 0);
 		List<String> locks = new ArrayList<>();
-		RunnableWithdraw wd = new RunnableWithdraw(account, withdraw, locks, "A");
-		RunnableDeposit dp = new RunnableDeposit(account, deposit, locks, "B");
+		RunnableWithdraw wd = new RunnableWithdraw(account, withdraw, locks, "G");
+		RunnableDeposit dp = new RunnableDeposit(account, deposit, locks, "H");
 		Thread tdp = new Thread(dp);
 		Thread twd = new Thread(wd);
 		tdp.setName("Person 2");
@@ -167,7 +174,7 @@ public class Driver {
 		Account account = new Account(1, balance1);
 		Account account2 = new Account(2, balance2);
 		List<String> locks = new ArrayList<>();
-		RunnableTransfer tr = new RunnableTransfer(account2, account, amount, locks, "A");
+		RunnableTransfer tr = new RunnableTransfer(account2, account, amount, locks, "I");
 		Thread ttr = new Thread(tr);
 		ttr.setName("Employee 1");
 		ttr.start();

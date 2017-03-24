@@ -2,6 +2,7 @@ package testgenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Info {
 	//a list of the equation for each test, eg account balance 1 = input + 100
@@ -10,11 +11,11 @@ public class Info {
 	//lists. eg ["Account 1 Deposit", "Account 2 Withdraw"] ["Account 1 Balance", "Account 2 Balance"]
 
 	private ArrayList<String> equations;
-	private ArrayList<String> locks;
+	private Set<String> locks;
 	private ArrayList<String> inputContext;
 	private ArrayList<String> outputContext;
 
-	public Info(ArrayList<String> equations, ArrayList<String> locks, ArrayList<String> inputContext, ArrayList<String> outputContext) {
+	public Info(ArrayList<String> equations, Set<String> locks, ArrayList<String> inputContext, ArrayList<String> outputContext) {
 		this.equations = equations;
 		this.locks = locks;
 		this.inputContext = inputContext;
@@ -25,7 +26,7 @@ public class Info {
 		return equations;
 	}
 
-	public ArrayList<String> getLocks() {
+	public Set<String> getLocks() {
 		return locks;
 	}
 

@@ -2,6 +2,7 @@ package testgenerator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -17,7 +18,7 @@ public class TestGenerator {
 	List<Double> inputs;
 	List<Double> expectedOutputs;    
 	List<String> equations;
-	List<String> locks;
+	Set<String> locks;
 	List<String> inputContext;
 	List<String> outputContext;
 
@@ -78,8 +79,6 @@ public class TestGenerator {
 						e.printStackTrace();
 					}
 				}
-				System.out.println("Expected Outputs: " + expectedOutputs.get(k));
-				System.out.println("Output Context: " + outputContext.get(k));
 			}
 			double ii = i;
 			double testIndex = index + (ii/10);
@@ -92,7 +91,7 @@ public class TestGenerator {
 		return testCaseList;
 	}
 	
-	public List<String> getLocks() {
+	public Set<String> getLocks() {
 		return locks;
 	}
 }

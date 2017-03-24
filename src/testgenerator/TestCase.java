@@ -1,16 +1,17 @@
 package testgenerator;
 
 import java.util.List;
+import java.util.Set;
 
 public class TestCase {
 	private double id;
 	private List<Double> inputs;
 	private List<Double> expectedOutputs;
-	private List<String> locks;
+	private Set<String> locks;
 	private List<String> inputContext;
 	private List<String> outputContext;
 
-	public TestCase (double id, List<Double> inputs, List<Double> expectedOutputs, List<String> locks, List<String> inputContext, List<String> outputContext) {
+	public TestCase (double id, List<Double> inputs, List<Double> expectedOutputs, Set<String> locks, List<String> inputContext, List<String> outputContext) {
 		this.id = id;
 		this.inputs = inputs;
 		this.expectedOutputs = expectedOutputs;
@@ -31,7 +32,7 @@ public class TestCase {
 		return expectedOutputs;
 	}
 
-	public List<String> getLocks() {
+	public Set<String> getLocks() {
 		return locks;
 	}
 
