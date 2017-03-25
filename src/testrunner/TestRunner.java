@@ -28,7 +28,7 @@ public class TestRunner {
 		for(int i = 0; i < testCases.size(); i++) {
 			results.add(new ArrayList<>());
 			TestCase testCase = testCases.get(i);
-			for (int j = 0; j < 4; j++) {
+			for (int j = 0; j < 5; j++) {
 				List<Double> inputs = testCase.getInputs();
 				switch((int) testCase.getID()) {
 				case 1:
