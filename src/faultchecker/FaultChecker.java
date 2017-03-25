@@ -63,7 +63,6 @@ public class FaultChecker {
             for (String output:connectToContext(tc.getOutputContext(),tc.getExpectedOutputs())) {
                 System.out.println(output);
             }
-            System.out.println("Expected outputs: " + tc.getExpectedOutputs().size());
             System.out.println("");
             for (int i = 0; i < failures.size(); i++) {
                 System.out.println("Results of Failure No. " + (i + 1));
