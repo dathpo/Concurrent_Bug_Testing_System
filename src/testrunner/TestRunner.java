@@ -14,10 +14,12 @@ public class TestRunner {
 	Set<String> lockPairs;
 	Driver cut;
 	List<TestCase> testCases;
+	int iterations;
 
-	public TestRunner(Driver cut, List<TestCase> testCases){
+	public TestRunner(Driver cut, List<TestCase> testCases, int iterations){
 		this.cut = cut;
-		this.testCases = testCases;	
+		this.testCases = testCases;
+		this.iterations = iterations;
 		lockPairs = new HashSet<>();
 		results = new ArrayList<>();
 		runTests();
@@ -28,7 +30,7 @@ public class TestRunner {
 		for(int i = 0; i < testCases.size(); i++) {
 			results.add(new ArrayList<>());
 			TestCase testCase = testCases.get(i);
-			for (int j = 0; j < 5; j++) {
+			for (int j = 0; j < iterations; j++) {
 				List<Double> inputs = testCase.getInputs();
 				switch((int) testCase.getID()) {
 				case 1:
