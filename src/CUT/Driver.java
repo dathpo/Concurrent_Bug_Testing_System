@@ -15,10 +15,10 @@ public class Driver {
 	}
 
 	public Info analysis(int testNumber) {
-		ArrayList<String> equations = new ArrayList<String>();
-		Set<String> lockPairs = new HashSet<String>();
-		ArrayList<String> inputContext = new ArrayList<String>();
-		ArrayList<String> outputContext = new ArrayList<String>();
+		ArrayList<String> equations = new ArrayList<>();
+		Set<String> lockPairs = new HashSet<>();
+		ArrayList<String> inputContext = new ArrayList<>();
+		ArrayList<String> outputContext = new ArrayList<>();
 		
 		lockPairs.add("4A 4B");
 		lockPairs.add("4B 4A");
@@ -75,9 +75,9 @@ public class Driver {
 			tcb2.join();
 		}
 		catch(InterruptedException ie) {
-
+			ie.printStackTrace();
 		}
-		ArrayList<Double> balances = new ArrayList<Double>();
+		ArrayList<Double> balances = new ArrayList<>();
 		balances.add(account.getBalance());
 		List<String> lockPairs = new ArrayList<>();
 		for (int i = 0; i < locks.size() - 1; i++) {
@@ -102,9 +102,9 @@ public class Driver {
 			tdc.join();
 		}
 		catch(InterruptedException ie) {
-
+			ie.printStackTrace();
 		}
-		ArrayList<Double> balances = new ArrayList<Double>();
+		ArrayList<Double> balances = new ArrayList<>();
 		balances.add(account.getBalance());List<String> lockPairs = new ArrayList<>();
 		for (int i = 0; i < locks.size() - 1; i++) {
 			lockPairs.add(locks.get(i) + " " + locks.get(i + 1));
@@ -128,9 +128,9 @@ public class Driver {
 			twc.join();
 		}
 		catch(InterruptedException ie) {
-
+			ie.printStackTrace();
 		}
-		ArrayList<Double> balances = new ArrayList<Double>();
+		ArrayList<Double> balances = new ArrayList<>();
 		balances.add(account.getBalance());
 		List<String> lockPairs = new ArrayList<>();
 		for (int i = 0; i < locks.size() - 1; i++) {
@@ -155,9 +155,9 @@ public class Driver {
 			tdp.join();
 		}
 		catch(InterruptedException ie) {
-
+			ie.printStackTrace();
 		}
-		ArrayList<Double> balances = new ArrayList<Double>();
+		ArrayList<Double> balances = new ArrayList<>();
 		balances.add(account.getBalance());
 		List<String> lockPairs = new ArrayList<>();
 		for (int i = 0; i < locks.size() - 1; i++) {
@@ -178,9 +178,9 @@ public class Driver {
 			ttr.join();
 		}
 		catch(InterruptedException ie) {
-
+			ie.printStackTrace();
 		}
-		ArrayList<Double> balances = new ArrayList<Double>();
+		ArrayList<Double> balances = new ArrayList<>();
 		balances.add(account.getBalance());
 		balances.add(account2.getBalance());
 		List<String> lockPairs = new ArrayList<>();
