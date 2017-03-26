@@ -79,7 +79,6 @@ public class TestRunner {
 					}
 					break;
 				}
-				//TODO - use the inputs to make custom cut cases after cut class has been modified and get
 			}
 		}
 
